@@ -10,8 +10,13 @@
     <nav>
       <span>Larafaves</span>
       <ul>
+        @auth
+        <li>{{ auth()->user()->name }}</li>
+        <li><a href='/logout'>Logout</a></li>
+        @else
         <li><a href='/register'>Register</a></li>
         <li><a href='/login'>Login</a></li>
+        @endauth
       </ul>
     </nav>
     {{$slot}}
