@@ -3,48 +3,48 @@
   <form method='POST' action='/{{ auth()->user()->userhandle }}/faves/store'>
     @csrf
     
-    <div>
-      <label for='link'>Link</label>
-      <input type='text' name='link' />
+    <div class='mb-3'>
+      <label for='link' class='form-label'>Link</label>
+      <input type='text' name='link' class='form-control'/>
       @error('link')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <label for='name'>Name</label>
-      <input type='text' name='name' />
+    <div class='mb-3'>
+      <label for='name' class='form-label'>Name</label>
+      <input type='text' name='name' class='form-control'/>
       @error('name')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <label for='tags'>Tags</label>
-      <input type='text' name='tags' />
+    <div class='mb-3'>
+      <label for='tags' class='form-label'>Tags</label>
+      <input type='text' name='tags' class='form-control'/>
       @error('tags')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <label for='description'>Description</label>
-      <textarea name='description' ></textarea>
+    <div class='mb-3'>
+      <label for='description' class='form-label'>Description</label>
+      <textarea name='description' class='form-control'></textarea>
       @error('description')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <label for='is_public'>Make link public?</label>
-      <input type='checkbox' name='is_public' />
+    <div class='form-check form-switch mb-3'>
+      <input type='checkbox' name='is_public' class='form-check-input' />
+      <label for='is_public' class='form-label' class='form-check-label'>Make link public?</label>
       @error('is_public')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <button type="submit">Create</button>
+    <div class='mb-3'>
+      <button type="submit" class='btn btn-primary'>Create</button>
     </div>
 
   </form>
