@@ -8,7 +8,15 @@
   </head>
   <body>
     <nav>
-      <span>Larafaves</span>
+      <span>
+        <a
+        @auth
+        href='/{{ auth()->user()->userhandle }}'
+        @else
+        href='/'
+        @endauth
+        >Larafaves<a>
+        </span>
       <ul>
         @auth
         <li>{{ auth()->user()->name }}</li>
