@@ -12,7 +12,10 @@
       <ul>
         @auth
         <li>{{ auth()->user()->name }}</li>
-        <li><a href='/logout'>Logout</a></li>
+        <li><form method='POST' action='/logout'>
+          @csrf
+          <button type='submit'>Logout</button>
+        </li>
         @else
         <li><a href='/register'>Register</a></li>
         <li><a href='/login'>Login</a></li>
