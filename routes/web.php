@@ -36,3 +36,6 @@ Route::get('/{userhandle}/faves/{fave}/edit', [FaveController::class, 'edit'])->
 
 // Update fave
 Route::put('/{userhandle}/faves/{fave}', [FaveController::class, 'update'])->middleware('auth');
+
+//Delete a fave
+Route::delete('{userhandle}/faves/{fave}/remove', [FaveController::class, 'destroy'])->middleware('auth');

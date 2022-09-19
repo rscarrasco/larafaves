@@ -14,6 +14,11 @@
         @if($show_owner_tools)
         <p>
           <a href= '/{{ $user['userhandle'] }}/faves/{{ $fave->id }}/edit/'>Edit</a>
+          <form method='POST' action='/{{ $user['userhandle'] }}/faves/{{ $fave->id }}/remove'>
+            @csrf
+            @method('DELETE')
+            <button type='submit'>Delete</button>
+          </form>
         </p>
         @endif
       </div>

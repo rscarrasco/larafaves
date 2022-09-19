@@ -57,4 +57,13 @@ class FaveController extends Controller
         $fave->update($formFields);
         return redirect("/$userhandle")->with('message', 'Fave updated succesfully');
     }
+
+    public function destroy(string $userhandle, Fave $fave){
+        if($fave->user_id != auth()->id()){
+            abort(403, 'Unauthorized action.');
+        }
+
+        $fave->delete();
+        return redirect("/$userhandle")->with('message', 'Fave deleted succesfully.');
+    }
 }
