@@ -4,54 +4,55 @@
     @csrf
     @method('PUT')
 
-    <div>
-      <label for='link'>Link</label>
-      <input type='text' name='link' value='{{ $fave->link }}' />
+    <div class='mb-3'>
+      <label for='link' class='form-label'>Link</label>
+      <input type='text' name='link' value='{{ $fave->link }}' class='form-control'/>
       @error('link')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <label for='name'>Name</label>
-      <input type='text' name='name' value='{{ $fave->name }}' />
+    <div class='mb-3'>
+      <label for='name' class='form-label'>Name</label>
+      <input type='text' name='name' value='{{ $fave->name }}' class='form-control'/>
       @error('name')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <label for='tags'>Tags</label>
-      <input type='text' name='tags' value='{{ $fave->tags }}' />
+    <div class='mb-3'>
+      <label for='tags' class='form-label'>Tags</label>
+      <input type='text' name='tags' value='{{ $fave->tags }}' class='form-control'/>
       @error('tags')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <label for='description'>Description</label>
-      <textarea name='description' >{{ $fave->description }}</textarea>
+    <div class='mb-3'>
+      <label for='description' class='form-label'>Description</label>
+      <textarea name='description' class='form-control'>{{ $fave->description }}</textarea>
       @error('description')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <label for='is_public'>Make link public?</label>
+    <div class='form-check form-switch mb-3'>
       <input 
         type='checkbox'
-        name='is_public' 
+        name='is_public'
+        class='form-check-input'
         @if($fave->is_public)
         checked
         @endif 
         />
+      <label for='is_public' class='form-check-label'>Make link public?</label>
       @error('is_public')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <button type="submit">Edit</button>
+    <div class='mb-3'>
+      <button type="submit" class='btn btn-primary'>Edit</button>
     </div>
 
   </form>
