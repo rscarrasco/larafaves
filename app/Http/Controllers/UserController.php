@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\User;
+use App\Models\Fave;
 
 class UserController extends Controller
 {
@@ -57,9 +58,14 @@ class UserController extends Controller
         $pathInfo = $request->getPathInfo();
         preg_match('#^/([a-zA-z-0-9]+)$#', $pathInfo, $matches);
         $userhandle = $matches[1];
-        $user = User::where('userhandle', $userhandle)->first();
-        if($user){
-            return view('user.userpage', ['user' => $user]);
+        $owner = User::where('userhandle', $userhandle)->first();
+        if($owner){
+            $is_owner = auth()->user() == null or auth()->id() != $owner->id;
+            if($is_owner)
+                $faves = Fave::latest()->where('user_id', $owner->id)->where('is_public', true)->paginate(3);
+            else
+                $faves = Fave::latest()->where('user_id', $owner->id)->paginate(3);
+            return view('user.userpage', ['user' => $owner, 'faves' => $faves]);
         }
         return redirect('/')->with('message', "User $userhandle not found.");
     }
