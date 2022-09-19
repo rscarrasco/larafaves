@@ -20,3 +20,6 @@ Route::post('/authenticate', [UserController::class, 'authenticate']);
 
 // Logout
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+
+// Userpage
+Route::get('/{userhandle}' , [UserController::class, 'userpage']);

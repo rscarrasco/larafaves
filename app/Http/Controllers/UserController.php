@@ -52,4 +52,15 @@ class UserController extends Controller
         $request->session()->regenerateToken();
         return redirect('/')->with('message', 'You have been logged out');
     }
+
+    public function userpage(Request $request){ 
+        $pathInfo = $request->getPathInfo();
+        preg_match('#^/([a-zA-z-0-9]+)$#', $pathInfo, $matches);
+        $userhandle = $matches[1];
+        $user = User::where('userhandle', $userhandle)->first();
+        if($user){
+            return view('user.userpage', ['user' => $user]);
+        }
+        return redirect('/')->with('message', "User $userhandle not found.");
+    }
 }
