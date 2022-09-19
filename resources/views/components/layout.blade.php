@@ -15,6 +15,7 @@
         <li><form method='POST' action='/logout'>
           @csrf
           <button type='submit'>Logout</button>
+        </form>
         </li>
         @else
         <li><a href='/register'>Register</a></li>
