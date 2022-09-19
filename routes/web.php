@@ -7,16 +7,16 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () { return view('home'); });
 
 // Register page
-Route::get('/register', [UserController::class, 'create']);
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 
 // Store a new user
 Route::post('/users', [UserController::class, 'store']);
 
 // Login
-Route::get('/login', [Usercontroller::class, 'login']);
+Route::get('/login', [Usercontroller::class, 'login'])->name('login')->middleware('guest');
 
 // Authenticate
 Route::post('/authenticate', [UserController::class, 'authenticate']);
 
 // Logout
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
