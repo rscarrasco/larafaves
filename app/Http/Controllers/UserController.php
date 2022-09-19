@@ -54,10 +54,7 @@ class UserController extends Controller
         return redirect('/')->with('message', 'You have been logged out');
     }
 
-    public function userpage(Request $request){ 
-        $pathInfo = $request->getPathInfo();
-        preg_match('#^/([a-zA-z-0-9]+)$#', $pathInfo, $matches);
-        $userhandle = $matches[1];
+    public function userpage(Request $request, string $userhandle){ 
         $owner = User::where('userhandle', $userhandle)->first();
         if($owner){
             $not_owner = auth()->user() == null || auth()->id() != $owner->id;

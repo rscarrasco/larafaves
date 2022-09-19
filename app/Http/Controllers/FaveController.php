@@ -11,7 +11,7 @@ class FaveController extends Controller
         return view('fave.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request, string $userhandle){
         $formFields = $request->validate([
             'link' => ['required', 'url'],
             'name' => 'required',
@@ -20,9 +20,6 @@ class FaveController extends Controller
             'is_public' => '',
         ]);
         
-        preg_match('#^/([a-zA-z-0-9]+).*#', $request->getPathInfo(), $matches);
-        $userhandle = $matches[1];
-
         $formFields['is_public'] = $formFields['is_public'] ?? false;
         $formFields['is_public'] == 'on' ? $formFields['is_public'] = true : $formFields['is_public'] = false;
         $formFields['user_id'] = auth()->id();
