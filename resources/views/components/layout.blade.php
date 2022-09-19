@@ -23,5 +23,6 @@
       </ul>
     </nav>
     {{$slot}}
+    <x-flash-message />
   </body>
 </html>
