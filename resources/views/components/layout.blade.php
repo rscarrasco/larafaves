@@ -9,31 +9,40 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous" defer></script>
   </head>
   <body>
-    <nav>
-      <span>
-        <a
-        @auth
-        href='/{{ auth()->user()->userhandle }}'
-        @else
-        href='/'
-        @endauth
-        >Larafaves<a>
+    <nav class='navbar navbar-expand-lg bg-dark navbar-dark'>
+      <div class='container'>
+        <span>
+          <a class='navbar-brand'
+          @auth
+          href='/{{ auth()->user()->userhandle }}'
+          @else
+          href='/'
+          @endauth
+          >Larafaves<a>
         </span>
-      <ul>
-        @auth
-        <li>{{ auth()->user()->name }}</li>
-        <li><form method='POST' action='/logout'>
-          @csrf
-          <button type='submit'>Logout</button>
-        </form>
-        </li>
-        @else
-        <li><a href='/register'>Register</a></li>
-        <li><a href='/login'>Login</a></li>
-        @endauth
-      </ul>
+        <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navmenu'>
+          <span class='navbar-toggler-icon'></span>
+        </button>
+        <div class='navbar-collapse collapse' id='navmenu'>
+          <ul class='navbar-nav ms-auto'>
+            @auth
+            <li class='nav-item nav-link'>{{ auth()->user()->name }}</li>
+            <li class='nav-item'><form method='POST' action='/logout'>
+              @csrf
+              <button type='submit' class='btn btn-outline-warning'>Logout</button>
+            </form>
+            </li>
+            @else
+            <li class='nav-item'><a class='nav-link' href='/register'>Register</a></li>
+            <li class='nav-item'><a class='btn btn-outline-info' href='/login'>Login</a></li>
+            @endauth
+          </ul>
+        </div>
+      </div>
     </nav>
+    <div class='container'>
     {{$slot}}
+    </div>
     <x-flash-message />
   </body>
 </html>
