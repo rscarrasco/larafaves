@@ -31,4 +31,30 @@ class FaveController extends Controller
 
         return redirect("/$userhandle")->with('message', 'Fave created.');
     }
+
+    public function edit(string $userhandle, Fave $fave){
+        if($fave->user_id != auth()->id()){
+            abort(403, 'Unauthorized action.');
+        }
+        return view('fave.edit', ['fave' => $fave]);
+    }
+
+    public function update(Request $request, string $userhandle, Fave $fave){
+        if($fave->user_id != auth()->id()){
+            abort(403, 'Unauthorized action.');
+        }
+
+        $formFields = $request->validate([
+            'link' => ['required', 'url'],
+            'name' => 'required',
+            'tags' => '',
+            'description' => '',
+            'is_public' => '',
+        ]);
+
+        $formFields['is_public'] = $formFields['is_public'] ?? false;
+        $formFields['is_public'] == 'on' ? $formFields['is_public'] = true : $formFields['is_public'] = false;
+        $fave->update($formFields);
+        return redirect("/$userhandle")->with('message', 'Fave updated succesfully');
+    }
 }

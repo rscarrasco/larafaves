@@ -30,3 +30,9 @@ Route::get('/{userhandle}/faves/create', [FaveController::class, 'create'])->mid
 
 // Stores new fave
 Route::post('/{userhandle}/faves/store', [FaveController::class, 'store']);
+
+// Fave edit page
+Route::get('/{userhandle}/faves/{fave}/edit', [FaveController::class, 'edit'])->middleware('auth');
+
+// Update fave
+Route::put('/{userhandle}/faves/{fave}', [FaveController::class, 'update'])->middleware('auth');

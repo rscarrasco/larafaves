@@ -60,12 +60,16 @@ class UserController extends Controller
         $userhandle = $matches[1];
         $owner = User::where('userhandle', $userhandle)->first();
         if($owner){
-            $is_owner = auth()->user() == null or auth()->id() != $owner->id;
-            if($is_owner)
+            $not_owner = auth()->user() == null or auth()->id() != $owner->id;
+            if($not_owner)
                 $faves = Fave::latest()->where('user_id', $owner->id)->where('is_public', true)->paginate(3);
             else
                 $faves = Fave::latest()->where('user_id', $owner->id)->paginate(3);
-            return view('user.userpage', ['user' => $owner, 'faves' => $faves]);
+            return view('user.userpage', [
+                'user' => $owner, 
+                'faves' => $faves, 
+                'show_owner_tools' => !$not_owner]
+            );
         }
         return redirect('/')->with('message', "User $userhandle not found.");
     }

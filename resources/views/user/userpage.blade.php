@@ -6,9 +6,16 @@
   @if($faves)
     @foreach($faves as $fave)
       <div>
-        <p><a target='_blank' href='{{ $fave->link }}'>{{ $fave->name }}</a></p>
+        <p>
+          <a target='_blank' href='{{ $fave->link }}'>{{ $fave->name }}</a>
+        </p>
         <p>{{ $fave->tags }}</p>
         <p>{{ $fave->description }}</p>
+        @if($show_owner_tools)
+        <p>
+          <a href= '/{{ $user['userhandle'] }}/faves/{{ $fave->id }}/edit/'>Edit</a>
+        </p>
+        @endif
       </div>
     @endforeach
   @else
