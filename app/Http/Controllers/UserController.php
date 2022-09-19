@@ -25,8 +25,8 @@ class UserController extends Controller
 
         $user = User::create($formFields);
         auth()->login($user);
-
-        return redirect('/')->with('message', 'User created and logged in.');
+        $userhandle = auth()->user()->userhandle;
+        return redirect("/$userhandle")->with('message', 'User created and logged in.');
     }
 
     public function login(){
@@ -41,7 +41,8 @@ class UserController extends Controller
 
         if(auth()->attempt($formFields)){
             $request->session()->regenerate();
-            return redirect('/')->with('message', 'You have been logged in.');
+            $userhandle = auth()->user()->userhandle;
+            return redirect("/$userhandle")->with('message', 'You have been logged in.');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
