@@ -3,51 +3,51 @@
   <form method='POST' action='/users'>
     @csrf
     
-    <div>
-      <label for='name'>Name</label>
-      <input type="text" name="name" value='{{old('name')}}'>
+    <div class='mb-3'>
+      <label for='name' class='form-label'>Name</label>
+      <input type="text" name="name" value='{{old('name')}}' class='form-control'>
       @error('name')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <label for='userhandle'>Userhandle</label>
-      <input type="text" name="userhandle" value='{{old('userhandle')}}'>
+    <div class='mb-3'>
+      <label for='userhandle' class='form-label'>Userhandle</label>
+      <input type="text" name="userhandle" value='{{old('userhandle')}}' class='form-control'>
       @error('userhandle')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <label for='email'>Email</label>
-      <input type="text" name="email" value='{{old('email')}}'>
+    <div class='mb-3'>
+      <label for='email' class='form-label'>Email</label>
+      <input type="text" name="email" value='{{old('email')}}' class='form-control'>
       @error('email')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <label for='password'>Password</label>
-      <input type="password" name="password" value='{{old('password')}}'>
+    <div class='mb-3'>
+      <label for='password' class='form-label'>Password</label>
+      <input type="password" name="password" value='{{old('password')}}' class='form-control'>
       @error('password')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <label for='password_confirmation'>Confirm password</label>
-      <input type="password" name="password_confirmation" value='{{old('password_confirmation')}}'>
+    <div class='mb-3'>
+      <label for='password_confirmation' class='form-label'>Confirm password</label>
+      <input type="password" name="password_confirmation" value='{{old('password_confirmation')}}' class='form-control'>
       @error('password_confirmation')
-        <p>{{ $message }}</p>
+        <p class='form-text text-danger'>{{ $message }}</p>
       @enderror
     </div>
 
-    <div>
-      <button type='submit'>Submit</button>
+    <div class='mb-3'>
+      <button type='submit' class='btn btn-primary'>Submit</button>
     </div>
 
-    <div>
+    <div class='mb-3'>
       <p>Already have an account? <a href='/login'>Login</a></p>
     </div>
 
