@@ -10,7 +10,7 @@
           <h2 class='card-title'>
             <a target='_blank' href='{{ $fave->link }}'>{{ $fave->name }}</a>
           </h2>
-          <p>{{ $fave->tags }}</p>
+          <x-fave-tags :tagsCsv='$fave->tags' />
           <p>{{ $fave->description }}</p>
         </div>
         @if($show_owner_tools)
