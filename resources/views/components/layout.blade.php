@@ -41,8 +41,8 @@
       </div>
     </nav>
     <div class='container'>
+    <x-flash-message />
     {{$slot}}
     </div>
-    <x-flash-message />
   </body>
 </html>
